@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const dbConnection = async () => {
     try {
+        await mongoose.set("strictQuery", false);
         await mongoose.connect(process.env.DB_CNN, {
         });
         console.log('la base de datos esta okk');
