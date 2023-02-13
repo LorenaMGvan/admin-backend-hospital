@@ -2,10 +2,9 @@ const Usuario = require('../models/usuario');
 
 const getUsuarios = async(req, resp) => {
     //resp.json({
-        const usuarios = await Usuario.find();
+        // const usuarios = await Usuario.find();
         // para especificar un filtro:
-        // const usuarios = await Usuario.find({}, 'nombre email role google');
-        // const Usuario = require('../models/usuario');
+         const usuarios = await Usuario.find({}, 'nombre email role google');
     
     resp.json({
         ok: true,usuarios
