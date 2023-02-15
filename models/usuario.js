@@ -5,19 +5,22 @@ const { Schema, model } = require('mongoose');
 const UsuariosSchema = Schema({
     nombre: {
         type: String,
-        required: false
+        required: true,
     },
     email: {
         type: String,
         required: false,
-        unique: true
+        defaut: 'elemail@test.mx'
+        // unique: true 
     },
     password: {
         type: String,
         required: false,
+        default: 'elpass'
     },
     img: {
         type: String,
+        default: 'laimg'
     },
     role: {
         type: String,
@@ -25,13 +28,15 @@ const UsuariosSchema = Schema({
         default: 'USER_ROLE'
     },
     google: {
-        type: Boolean,
-        required: false
+        type: String,
+        required: false,
+        default: "unoooo"
     },
 });
 // esta parte es par la parte visual de lo que regresa la BD
 UsuariosSchema.method('toJSON', function() {
-    const { __v, _id, ...object } = this.toObject();
+    const { __v, _id, password, ...object } = this.toObject();
+    // la contraseña  y el ___v no lo mandamos  cuando hacemos querys de la BD, en elpostman
     object.uid = _id; // ahora aparecera el campo uid con el valor id en la bd esto "lor etorna"
     return object; 
 });

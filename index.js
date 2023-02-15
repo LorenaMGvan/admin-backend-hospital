@@ -13,13 +13,15 @@ app.use( cors() );
 
 // lectura y parseo del body
 app.use( express.json() );
+// PROBANDO SI FUNCIONA
+app.use(express.urlencoded({ extended: true }))
 
 // base de datos:
 dbConnection();
 
-// leer las varianles de entorno probarrr
-console.log( process.env);
 app.use('/api/usuarios', require('./routes/usuarios'));
+app.use('/api/login', require('./routes/auth'));
+app.use('/api/usuarios/add', require('./routes/usuarios'));
 
 app.listen(process.env.PORT, () => {
     console.log('servidor 3000');

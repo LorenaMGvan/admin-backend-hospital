@@ -1,0 +1,5 @@
+Nombre de la BD: 
+HospitalAlfa
+
+Colleccion o BASe de datos
+Usuarios
