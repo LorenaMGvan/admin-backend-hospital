@@ -1,4 +1,3 @@
-require('dotenv').config(); // lee las variables de entorno
 const jwt = require('jsonwebtoken');
 
 

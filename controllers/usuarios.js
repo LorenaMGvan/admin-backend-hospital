@@ -12,27 +12,11 @@ const getUsuarios = async(req, res) => {
 
     res.json({
         ok: true,
-        usuarios
+        usuarios,
+        uid: req.uid
     });
 
 }
-
-const crearUsuario2 = async (req, res) => {
-    const userX = new Usuario(req.body);
-    try {
-        await userX.save();
-        res.status(201).send(userX);
-    } catch (error) {
-        // res.status(500).send(error);
-
-        res.status(500).json({
-            ok: false,
-            errorx: req.body,
-            msg: 'Error inesperado... revisar logs'
-        });
-    }
-}
-
 
 const crearUsuario = async (req, res) => {
 
@@ -63,7 +47,6 @@ const crearUsuario = async (req, res) => {
         res.json({
             ok: true,
             usuarioX,
-            testc: usuarioX.id, 
             token,
         });
 
@@ -72,18 +55,15 @@ const crearUsuario = async (req, res) => {
         res.status(500).json({
             ok: false,
             msg: 'Error inesperado... revisar logs',
-            elerror: error
         });
     }
 }
 
 
-const actualizarUsuario = async (req, res = response) => {
+const actualizarUsuario = async ( req, res ) => {
 
     // TODO: Validar token y comprobar si es el usuario correcto
-
     const uid = req.params.id;
-
 
     try {
 

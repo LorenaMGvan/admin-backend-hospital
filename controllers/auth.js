@@ -12,29 +12,29 @@ const login = async( req, res = response) => {
         // verificar email
         const usuarioDB = await Usuario.findOne({email});
 
-        // if ( !usuarioDB ) {
-        //     return res.status(404).json({
-        //         ok: false,
-        //         msg: 'Email no encontrado'
-        //     });
-        // }
+        if ( !usuarioDB ) {
+            return res.status(404).json({
+                ok: false,
+                msg: 'Email no encontrado'
+            });
+        }
 
         // // verificar contraseña
-        // const validaPassword =  bcrypt.compareSync( password , usuarioDB.password); 
+        const validaPassword =  bcrypt.compareSync( password , usuarioDB.password); 
         
-        // if ( !validaPassword ) {
-        //     return res.status( 404 ).json({
-        //         ok: false,
-        //         msg:  'contraseña novalida'
-        //     });
-        // }
+        if ( !validaPassword ) {
+            return res.status( 404 ).json({
+                ok: false,
+                msg:  'contraseña novalida'
+            });
+        }
 
-        // // Generar el jwT token, aqui lo firmamos
-        // const token = await generarJWT( usuarioDB.id );
+        // Generar el jwT token, aqui lo firmamos
+        const token = await generarJWT( usuarioDB.id );
 
         res.json({
             ok: true,
-            token: 'token',
+            token: token,
             msg: 'soy el token auth..'
         });
         
